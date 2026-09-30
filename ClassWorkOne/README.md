@@ -3,7 +3,9 @@
 Same Kaggle dataset for every notebook:  
 [gunavenkatdoddi/eye-diseases-classification](https://www.kaggle.com/datasets/gunavenkatdoddi/eye-diseases-classification)
 
-## Notebooks (all 19 sections)
+**Classes:** cataract / diabetic_retinopathy / glaucoma / normal
+
+## Single-model notebooks
 
 | Notebook | Model |
 |----------|--------|
@@ -14,32 +16,31 @@ Same Kaggle dataset for every notebook:
 | `finetune-mobilenet-eye-disease.ipynb` | MobileNetV3-Large |
 | `finetune-alexnet-eye-disease.ipynb` | AlexNet |
 
-Each of the five finetune notebooks uses the **same 19-section layout** as the main file:
+## Multi-model compare (recommended for baseline ranking)
 
-1. Imports  
-2. Config + auto-find dataset  
-3. Reproducibility + device  
-4. Validate + ImageFolder  
-5. Class distribution  
-6. Stratified 70/15/15 split  
-7. Save split assignments  
-8. Transforms  
-9. Datasets + loaders  
-10. Sample training images  
-11. Build model  
-12. Loss / metrics / train-eval (+ TTA)  
-13. Two-phase training (head → full fine-tune)  
-14. Training curves  
-15. Best checkpoint + test (+ TTA)  
-16. Class-wise + overall metrics  
-17. Confusion matrices  
-18. Save predictions + show errors  
-19. Final summary  
+| Notebook | Model |
+|----------|--------|
+| `compare-all-pretrained-eye-disease.ipynb` | All 6 (DEFAULT, no freeze, clean split, 30h resume) |
 
-## How to run on Kaggle
+Dataset API: `gunavenkatdoddi/eye-diseases-classification` via **kagglehub** (+ CLI fallback), or Add data.
+
+1. Upload notebook → **Internet ON** → GPU → Run All  
+2. Hash-dedupe → stratified 70/15/15  
+3. Trains: AlexNet, MobileNetV3-Large, EfficientNet-B0, ResNet50, VGG16, Swin-T  
+4. Output: `/kaggle/working/eye_multi_pretrained_v2/`  
+5. Top-2 → `…/top2/` + `FINAL_RESULTS.txt/json`
+
+### 30h / new-account resume
+
+- Per-epoch `last.pth` + `best.pth` + `run_state.json`  
+- Session stop ~11.5h; cumulative hard stop **30h** with full flush  
+- `PAUSE.txt`, `RESUME_INSTRUCTIONS.txt`, `CHECKPOINT_MANIFEST.txt/json`  
+- New account: download output folder → **Add data** → Run All  
+
+## How to run single-model notebooks on Kaggle
 
 1. Upload one `.ipynb`  
-2. **Add data** → `eye-diseases-classification`  
+2. **Add data** → `eye-diseases-classification` (or Internet ON for API download)  
 3. **Accelerator → GPU**  
 4. **Run All**
 
