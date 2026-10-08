@@ -1,2 +1,10 @@
 config.bat
 node_modules
+.DS_Store
+__pycache__/
+*.pth
+*.pt
+checkpoint_weights.zip
+eye_multi_pretrained_v2/
+_eye_dl/
+.ipynb_checkpoints/

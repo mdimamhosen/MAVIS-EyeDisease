@@ -30,12 +30,14 @@ Dataset API: `gunavenkatdoddi/eye-diseases-classification` via **kagglehub** (+ 
 4. Output: `/kaggle/working/eye_multi_pretrained_v2/`  
 5. Top-2 → `…/top2/` + `FINAL_RESULTS.txt/json`
 
-### 30h / new-account resume
+### 30h / error / quota resume (GitHub + Kaggle)
+
+See **[KAGGLE_GITHUB.md](KAGGLE_GITHUB.md)**.
 
 - Per-epoch `last.pth` + `best.pth` + `run_state.json`  
-- Session stop ~11.5h; cumulative hard stop **30h** with full flush  
-- `PAUSE.txt`, `RESUME_INSTRUCTIONS.txt`, `CHECKPOINT_MANIFEST.txt/json`  
-- New account: download output folder → **Add data** → Run All  
+- Stops on ~11.5h session, **30h cumulative**, errors, CUDA OOM, timeout, quota  
+- Flush + optional push to GitHub (`kaggle-checkpoints` branch + Release)  
+- New account: same notebook from GitHub + `GITHUB_TOKEN` secret → Run All  
 
 ## How to run single-model notebooks on Kaggle
 

@@ -26,3 +26,20 @@
   per-model `best.pth`/`last.pth`/`results.txt`, `FINAL_RESULTS.txt/json`, `top2/`
 - Acc ≥ 0.999 flagged SUSPICIOUS
 - Updated ClassWorkOne/README.md
+
+---
+## 2026-10-08 — GitHub-direct run + error/timeout/quota checkpoints
+
+### User request
+- Handle the pipeline through GitHub directly
+- Checkpoint on error / timeout / quota / etc. for another account
+
+### What was done
+- Synced repo to `https://github.com/mdimamhosen/MAVIS-EyeDisease`
+- Notebook now:
+  - Pulls prior state from GitHub branch `kaggle-checkpoints` + Release `eye-checkpoint-latest`
+  - Pushes light artifacts to that branch; weights zip to Release (needs Kaggle Secret `GITHUB_TOKEN`)
+  - `safe_train_model`: catches KeyboardInterrupt, CUDA OOM, timeout, quota/limit, generic errors
+  - Always `flush_checkpoint_bundle` + optional GitHub push
+  - Writes `ERROR.txt` / `PAUSE.txt` / `CHECKPOINT_MANIFEST.*`
+- Added `ClassWorkOne/KAGGLE_GITHUB.md` runbook
